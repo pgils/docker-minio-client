@@ -1,4 +1,4 @@
-FROM alpine:3.14 as download
+FROM alpine:3.15 as download
 
 ARG MC_RELEASE
 
@@ -19,12 +19,12 @@ RUN \
     && wget -qO LICENSE ${LICENSE_URL_BASE}/LICENSE
 
 # UPX is not available for aarch64
-FROM --platform=linux/amd64 alpine:3.14 as compress
+FROM --platform=linux/amd64 alpine:3.15 as compress
 WORKDIR /work
 COPY --from=download /work/mc .
 RUN apk add --no-cache upx && upx mc
 
-FROM alpine:3.14
+FROM alpine:3.15
 COPY --from=compress /work/mc /usr/local/bin/
 COPY --from=download /work/licenses /licenses
 
