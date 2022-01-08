@@ -1,6 +1,6 @@
 FROM alpine:3.14 as dl
 
-ARG VERSION
+ARG MC_RELEASE
 
 WORKDIR /work
 RUN TARGETARCH=$(case $(arch) in \
@@ -9,7 +9,7 @@ RUN TARGETARCH=$(case $(arch) in \
         esac) \
     \
     && wget -qO mc \
-        https://dl.minio.io/client/mc/release/linux-${TARGETARCH}/archive/mc.${VERSION} \
+        https://dl.minio.io/client/mc/release/linux-${TARGETARCH}/archive/mc.${MC_RELEASE} \
     && chmod 755 mc \
     \
     && apk add --no-cache upx \
