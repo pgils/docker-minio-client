@@ -43,7 +43,6 @@ jobs:
             suffix=-alpine,onlatest=false
           tags: |
             ${{ steps.mc.outputs.release }}
-            type=schedule,pattern={{date 'YYYYMMDD'}}
           images: pgils/mc
       -
         name: Set up QEMU
